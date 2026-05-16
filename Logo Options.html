@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Screenbalance — Brand Options</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #f5f4f0; font-family: 'DM Sans', sans-serif; min-height: 100vh; }
+</style>
+</head>
+<body>
+<script type="text/babel" src="design-canvas.jsx"></script>
+<script type="text/babel">
+
+// ─── CURRENT BRAND: Screen Balance ──────────────────────────────────────────
+function ScreenBalanceLogo({ size = 1, variant = 'default' }) {
+  const isDark = variant === 'dark';
+  const isApp = variant === 'app';
+  const fg = isDark || isApp ? '#fff' : '#0a0a0a';
+  const iconBg = isDark ? '#fff' : isApp ? 'white' : '#0a0a0a';
+  const iconFg = isDark ? '#0a0a0a' : isApp ? '#0a0a0a' : '#fff';
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 22 * size }}>
+      {/* Checkbox tablet icon */}
+      <svg width={72 * size} height={72 * size} viewBox="0 0 72 72" fill="none">
+        <rect x="8" y="4" width="48" height="58" rx="7" fill={iconBg} />
+        <rect x="8" y="4" width="48" height="58" rx="7" stroke={isDark ? 'rgba(255,255,255,0.2)' : isApp ? 'rgba(0,0,0,0.1)' : 'none'} strokeWidth="2"/>
+        {/* Checkmark */}
+        <path d="M22 33 L30 42 L46 24" stroke={iconFg} strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+        {/* Bottom bar (home) */}
+        <rect x="28" y="54" width="8" height="3" rx="1.5" fill={iconFg} opacity="0.5"/>
+        {/* Small decorative lines */}
+        <rect x="20" y="14" width="24" height="3" rx="1.5" fill={iconFg} opacity="0.2"/>
+        <rect x="20" y="20" width="16" height="3" rx="1.5" fill={iconFg} opacity="0.2"/>
+      </svg>
+      {/* Wordmark */}
+      <div style={{ textAlign: 'center' }}>
+        <div style={{
+          fontFamily: "'DM Sans', sans-serif",
+          fontWeight: 900,
+          fontSize: 32 * size,
+          letterSpacing: '0.06em',
+          textTransform: 'uppercase',
+          color: fg,
+          lineHeight: 1,
+        }}>
+          SCREEN BALANCE
+        </div>
+        <div style={{
+          fontFamily: "'DM Sans', sans-serif",
+          fontWeight: 600,
+          fontSize: 13 * size,
+          color: isDark ? 'rgba(255,255,255,0.6)' : isApp ? 'rgba(255,255,255,0.7)' : '#555',
+          letterSpacing: '0.01em',
+          fontStyle: 'italic',
+          marginTop: 8 * size,
+        }}>
+          Earn minutes, not punishment
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ScreenBalanceCard() {
+  return (
+    <div style={{
+      width: '100%', height: '100%',
+      background: '#f9f9f7',
+      display: 'flex', flexDirection: 'column',
+      alignItems: 'center', justifyContent: 'center',
+      gap: 40, padding: 40,
+      fontFamily: "'DM Sans', sans-serif",
+    }}>
+      <ScreenBalanceLogo size={1.1} />
+      <div style={{ width: '100%', height: 1, background: '#e8e8e4' }}></div>
+      <div style={{ display: 'flex', gap: 20, width: '100%' }}>
+        {/* Dark bg */}
+        <div style={{
+          flex: 1, background: '#0a0a0a', borderRadius: 12,
+          padding: '20px 16px', display: 'flex', flexDirection: 'column',
+          alignItems: 'center', gap: 10,
+        }}>
+          <ScreenBalanceLogo size={0.38} variant="dark" />
+          <div style={{ color: 'rgba(255,255,255,0.35)', fontSize: 10, fontFamily: "'DM Serif Display'", fontStyle: 'italic' }}>Dark mode</div>
+        </div>
+        {/* App icon */}
+        <div style={{
+          flex: 1, background: '#0a0a0a', borderRadius: 22,
+          padding: '20px 16px', display: 'flex', flexDirection: 'column',
+          alignItems: 'center', justifyContent: 'center', gap: 6,
+        }}>
+          <svg width={52} height={52} viewBox="0 0 72 72" fill="none">
+            <rect x="8" y="4" width="48" height="58" rx="7" fill="rgba(255,255,255,0.15)"/>
+            <path d="M22 33 L30 42 L46 24" stroke="white" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+            <rect x="28" y="54" width="8" height="3" rx="1.5" fill="rgba(255,255,255,0.4)"/>
+          </svg>
+          <div style={{ color: 'rgba(255,255,255,0.5)', fontSize: 10, fontFamily: "'DM Serif Display'", fontStyle: 'italic' }}>App icon</div>
+        </div>
+        {/* Monochrome */}
+        <div style={{
+          flex: 1, background: '#efefed', borderRadius: 12,
+          padding: '20px 16px', display: 'flex', flexDirection: 'column',
+          alignItems: 'center', gap: 10,
+        }}>
+          <ScreenBalanceLogo size={0.38} variant="mono" />
+          <div style={{ color: '#999', fontSize: 10, fontFamily: "'DM Serif Display'", fontStyle: 'italic' }}>Light bg</div>
+        </div>
+      </div>
+      <div style={{ background: '#f0f0ec', border: '1px solid #ddddd8', borderRadius: 10, padding: '12px 20px', width: '100%' }}>
+        <div style={{ fontSize: 11, color: '#444', fontWeight: 600, marginBottom: 4 }}>CURRENT BRAND</div>
+        <div style={{ fontSize: 12, color: '#555', lineHeight: 1.5 }}>
+          Bold, direct, and descriptive. The checkbox-tablet icon immediately communicates the app's purpose.
+          "Earn minutes, not punishment" clearly states the value proposition.
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── OPTION 1: TimeSeed ──────────────────────────────────────────────────────
+function TimeSeedLogo({ size = 1 }) {
+  const s = size;
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 28 * s }}>
+      {/* Mark */}
+      <div style={{ position: 'relative', width: 96 * s, height: 96 * s }}>
+        {/* Circle clock */}
+        <svg width={96 * s} height={96 * s} viewBox="0 0 96 96" fill="none">
+          <circle cx="48" cy="48" r="44" stroke="#1a7a4e" strokeWidth="5"/>
+          <line x1="48" y1="48" x2="48" y2="22" stroke="#1a7a4e" strokeWidth="4.5" strokeLinecap="round"/>
+          <line x1="48" y1="48" x2="66" y2="56" stroke="#1a7a4e" strokeWidth="4.5" strokeLinecap="round"/>
+          {/* Seedling sprouting from center */}
+          <path d="M48 70 C48 58 58 50 66 46" stroke="#2db87a" strokeWidth="3.5" strokeLinecap="round" fill="none"/>
+          <ellipse cx="68" cy="43" rx="8" ry="5" fill="#2db87a" transform="rotate(-20 68 43)"/>
+          <path d="M48 70 C48 58 38 50 30 46" stroke="#2db87a" strokeWidth="3" strokeLinecap="round" fill="none" opacity="0.6"/>
+          <ellipse cx="28" cy="44" rx="7" ry="4.5" fill="#2db87a" transform="rotate(20 28 44)" opacity="0.6"/>
+          <line x1="48" y1="78" x2="48" y2="58" stroke="#2db87a" strokeWidth="3.5" strokeLinecap="round"/>
+        </svg>
+      </div>
+      {/* Wordmark */}
+      <div style={{ textAlign: 'center' }}>
+        <div style={{
+          fontFamily: "'DM Sans', sans-serif",
+          fontWeight: 700,
+          fontSize: 38 * s,
+          letterSpacing: '-0.02em',
+          color: '#0d1f17',
+          lineHeight: 1,
+        }}>
+          time<span style={{ color: '#1a7a4e' }}>seed</span>
+        </div>
+        <div style={{
+          fontFamily: "'DM Serif Display', serif",
+          fontStyle: 'italic',
+          fontWeight: 400,
+          fontSize: 14 * s,
+          color: '#2db87a',
+          letterSpacing: '0.01em',
+          marginTop: 8 * s,
+        }}>
+          plant good habits, grow free time
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function TimeSeedCard() {
+  return (
+    <div style={{
+      width: '100%', height: '100%',
+      background: '#f7fdf9',
+      display: 'flex', flexDirection: 'column',
+      alignItems: 'center', justifyContent: 'center',
+      gap: 40, padding: 40,
+      fontFamily: "'DM Sans', sans-serif",
+    }}>
+      <TimeSeedLogo size={1.1} />
+      <div style={{ width: '100%', height: 1, background: '#d4ede1' }}></div>
+      {/* Usage examples */}
+      <div style={{ display: 'flex', gap: 20, width: '100%' }}>
+        {/* Dark bg version */}
+        <div style={{
+          flex: 1, background: '#0d1f17', borderRadius: 12,
+          padding: '20px 16px', display: 'flex', flexDirection: 'column',
+          alignItems: 'center', gap: 10,
+        }}>
+          <svg width={36} height={36} viewBox="0 0 96 96" fill="none">
+            <circle cx="48" cy="48" r="44" stroke="#2db87a" strokeWidth="5"/>
+            <line x1="48" y1="48" x2="48" y2="22" stroke="#2db87a" strokeWidth="4.5" strokeLinecap="round"/>
+            <line x1="48" y1="48" x2="66" y2="56" stroke="#2db87a" strokeWidth="4.5" strokeLinecap="round"/>
+            <path d="M48 70 C48 58 58 50 66 46" stroke="#a8e6cf" strokeWidth="3.5" strokeLinecap="round" fill="none"/>
+            <ellipse cx="68" cy="43" rx="8" ry="5" fill="#a8e6cf" transform="rotate(-20 68 43)"/>
+            <line x1="48" y1="78" x2="48" y2="58" stroke="#a8e6cf" strokeWidth="3.5" strokeLinecap="round"/>
+          </svg>
+          <div style={{ color: '#fff', fontWeight: 700, fontSize: 13, letterSpacing: '-0.01em' }}>time<span style={{ color: '#2db87a' }}>seed</span></div>
+          <div style={{ color: '#2db87a', fontSize: 10, fontStyle: 'italic', fontFamily: "'DM Serif Display'" }}>Dark mode</div>
+        </div>
+        {/* App icon */}
+        <div style={{
+          flex: 1, background: '#1a7a4e', borderRadius: 22,
+          padding: '20px 16px', display: 'flex', flexDirection: 'column',
+          alignItems: 'center', justifyContent: 'center', gap: 6,
+        }}>
+          <svg width={48} height={48} viewBox="0 0 96 96" fill="none">
+            <circle cx="48" cy="48" r="44" stroke="rgba(255,255,255,0.5)" strokeWidth="5"/>
+            <line x1="48" y1="48" x2="48" y2="22" stroke="white" strokeWidth="4.5" strokeLinecap="round"/>
+            <line x1="48" y1="48" x2="66" y2="56" stroke="white" strokeWidth="4.5" strokeLinecap="round"/>
+            <path d="M48 70 C48 58 58 50 66 46" stroke="#a8e6cf" strokeWidth="3.5" strokeLinecap="round" fill="none"/>
+            <ellipse cx="68" cy="43" rx="8" ry="5" fill="#a8e6cf" transform="rotate(-20 68 43)"/>
+            <line x1="48" y1="78" x2="48" y2="58" stroke="#a8e6cf" strokeWidth="3.5" strokeLinecap="round"/>
+          </svg>
+          <div style={{ color: 'rgba(255,255,255,0.6)', fontSize: 10, fontStyle: 'italic', fontFamily: "'DM Serif Display'" }}>App icon</div>
+        </div>
+        {/* Monochrome */}
+        <div style={{
+          flex: 1, background: '#eee', borderRadius: 12,
+          padding: '20px 16px', display: 'flex', flexDirection: 'column',
+          alignItems: 'center', gap: 10,
+        }}>
+          <svg width={36} height={36} viewBox="0 0 96 96" fill="none">
+            <circle cx="48" cy="48" r="44" stroke="#333" strokeWidth="5"/>
+            <line x1="48" y1="48" x2="48" y2="22" stroke="#333" strokeWidth="4.5" strokeLinecap="round"/>
+            <line x1="48" y1="48" x2="66" y2="56" stroke="#333" strokeWidth="4.5" strokeLinecap="round"/>
+            <path d="M48 70 C48 58 58 50 66 46" stroke="#333" strokeWidth="3.5" strokeLinecap="round" fill="none"/>
+            <ellipse cx="68" cy="43" rx="8" ry="5" fill="#333" transform="rotate(-20 68 43)"/>
+            <line x1="48" y1="78" x2="48" y2="58" stroke="#333" strokeWidth="3.5" strokeLinecap="round"/>
+          </svg>
+          <div style={{ color: '#333', fontWeight: 700, fontSize: 13 }}>timeseed</div>
+          <div style={{ color: '#666', fontSize: 10, fontStyle: 'italic', fontFamily: "'DM Serif Display'" }}>Monochrome</div>
+        </div>
+      </div>
+      <div style={{ background: '#e8f7ef', borderRadius: 10, padding: '12px 20px', width: '100%' }}>
+        <div style={{ fontSize: 11, color: '#1a7a4e', fontWeight: 600, marginBottom: 4 }}>CONCEPT NOTE</div>
+        <div style={{ fontSize: 12, color: '#2d5540', lineHeight: 1.5 }}>
+          A clock with a sprouting seedling — time <em>grows</em> when nurtured. Warm, organic, parent-friendly. 
+          The name is one word, easy to type and remember.
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── OPTION 2: Earnly ────────────────────────────────────────────────────────
+function EarnlyLogo({ size = 1, dark = false }) {
+  const fg = dark ? '#fff' : '#0f0f14';
+  const accent = '#f5a623';
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 24 * size }}>
+      {/* Mark: star coin */}
+      <div style={{ position: 'relative' }}>
+        <svg width={88 * size} height={88 * size} viewBox="0 0 88 88" fill="none">
+          {/* Hexagon coin */}
+          <path d="M44 6 L75 23 L75 65 L44 82 L13 65 L13 23 Z" fill={accent} />
+          <path d="M44 14 L69 28 L69 60 L44 74 L19 60 L19 28 Z" fill={dark ? '#1a1a2e' : '#fff8ee'} />
+          {/* Star */}
+          <path d="M44 24 L47.5 35 L59 35 L50 42 L53 53 L44 46 L35 53 L38 42 L29 35 L40.5 35 Z" fill={accent}/>
+        </svg>
+      </div>
+      {/* Wordmark */}
+      <div style={{ textAlign: 'center' }}>
+        <div style={{
+          fontFamily: "'DM Sans', sans-serif",
+          fontWeight: 800,
+          fontSize: 44 * size,
+          letterSpacing: '-0.04em',
+          color: fg,
+          lineHeight: 1,
+        }}>
+          earn<span style={{ color: accent }}>ly</span>
+        </div>
+        <div style={{
+          fontFamily: "'DM Sans', sans-serif",
+          fontWeight: 400,
+          fontSize: 13 * size,
+          color: dark ? 'rgba(255,255,255,0.5)' : '#888',
+          letterSpacing: '0.12em',
+          textTransform: 'uppercase',
+          marginTop: 8 * size,
+        }}>
+          screen time, well deserved
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function EarnlyCard() {
+  return (
+    <div style={{
+      width: '100%', height: '100%',
+      background: '#fff',
+      display: 'flex', flexDirection: 'column',
+      alignItems: 'center', justifyContent: 'center',
+      gap: 40, padding: 40,
+      fontFamily: "'DM Sans', sans-serif",
+    }}>
+      <EarnlyLogo size={1.05} />
+      <div style={{ width: '100%', height: 1, background: '#f0ede6' }}></div>
+      <div style={{ display: 'flex', gap: 20, width: '100%' }}>
+        {/* Dark bg */}
+        <div style={{
+          flex: 1, background: '#0f0f14', borderRadius: 12,
+          padding: '20px 16px', display: 'flex', flexDirection: 'column',
+          alignItems: 'center', gap: 10,
+        }}>
+          <EarnlyLogo size={0.38} dark={true} />
+          <div style={{ color: 'rgba(255,255,255,0.4)', fontSize: 10, fontFamily: "'DM Serif Display'", fontStyle: 'italic' }}>Dark mode</div>
+        </div>
+        {/* App icon */}
+        <div style={{
+          flex: 1, background: '#f5a623', borderRadius: 22,
+          padding: '20px 16px', display: 'flex', flexDirection: 'column',
+          alignItems: 'center', justifyContent: 'center', gap: 6,
+        }}>
+          <svg width={52} height={52} viewBox="0 0 88 88" fill="none">
+            <path d="M44 6 L75 23 L75 65 L44 82 L13 65 L13 23 Z" fill="rgba(255,255,255,0.25)" />
+            <path d="M44 14 L69 28 L69 60 L44 74 L19 60 L19 28 Z" fill="rgba(255,255,255,0.15)" />
+            <path d="M44 24 L47.5 35 L59 35 L50 42 L53 53 L44 46 L35 53 L38 42 L29 35 L40.5 35 Z" fill="white"/>
+          </svg>
+          <div style={{ color: 'rgba(255,255,255,0.7)', fontSize: 10, fontFamily: "'DM Serif Display'", fontStyle: 'italic' }}>App icon</div>
+        </div>
+        {/* Wordmark only */}
+        <div style={{
+          flex: 1, background: '#f7f6f2', borderRadius: 12,
+          padding: '20px 16px', display: 'flex', flexDirection: 'column',
+          alignItems: 'center', justifyContent: 'center', gap: 6,
+        }}>
+          <div style={{ fontFamily: "'DM Sans'", fontWeight: 800, fontSize: 22, letterSpacing: '-0.04em', color: '#0f0f14' }}>
+            earn<span style={{ color: '#f5a623' }}>ly</span>
+          </div>
+          <div style={{ color: '#aaa', fontSize: 10, fontFamily: "'DM Serif Display'", fontStyle: 'italic' }}>Wordmark only</div>
+        </div>
+      </div>
+      <div style={{ background: '#fffbf2', border: '1px solid #f5e4b0', borderRadius: 10, padding: '12px 20px', width: '100%' }}>
+        <div style={{ fontSize: 11, color: '#c47d00', fontWeight: 600, marginBottom: 4 }}>CONCEPT NOTE</div>
+        <div style={{ fontSize: 12, color: '#5a4000', lineHeight: 1.5 }}>
+          A modern, app-native brand name — short, memorable, a verb at heart. 
+          The gold coin/star mark signals achievement and reward. Confident, youth-facing energy.
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── OPTION 3: Freeplay ──────────────────────────────────────────────────────
+function FreeplayLogo({ size = 1, variant = 'default' }) {
+  const isDark = variant === 'dark';
+  const isColor = variant === 'color';
+  const bg = isDark ? '#1b1040' : isColor ? '#5c3bcc' : 'transparent';
+  const primary = isDark ? '#a78bfa' : isColor ? '#fff' : '#5c3bcc';
+  const secondary = isDark ? '#f472b6' : isColor ? '#fbbf24' : '#f472b6';
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 22 * size }}>
+      {/* Mark: unlocked padlock with play button */}
+      <svg width={80 * size} height={80 * size} viewBox="0 0 80 80" fill="none">
+        {/* Shackle (open) */}
+        <path d="M26 38 L26 28 Q26 14 40 14 Q54 14 54 28 L54 32" stroke={primary} strokeWidth="5.5" strokeLinecap="round" fill="none"/>
+        {/* Lock body */}
+        <rect x="14" y="37" width="52" height="36" rx="9" fill={primary}/>
+        {/* Play triangle */}
+        <path d="M34 49 L34 63 L52 56 Z" fill={isDark ? '#1b1040' : isColor ? '#5c3bcc' : '#fff'}/>
+        {/* Sparkle */}
+        <circle cx="59" cy="22" r="4" fill={secondary}/>
+        <line x1="59" y1="15" x2="59" y2="19" stroke={secondary} strokeWidth="2.5" strokeLinecap="round"/>
+        <line x1="59" y1="25" x2="59" y2="29" stroke={secondary} strokeWidth="2.5" strokeLinecap="round"/>
+        <line x1="52" y1="22" x2="56" y2="22" stroke={secondary} strokeWidth="2.5" strokeLinecap="round"/>
+        <line x1="62" y1="22" x2="66" y2="22" stroke={secondary} strokeWidth="2.5" strokeLinecap="round"/>
+      </svg>
+      {/* Wordmark */}
+      <div style={{ textAlign: 'center' }}>
+        <div style={{
+          fontFamily: "'DM Sans', sans-serif",
+          fontWeight: 900,
+          fontSize: 40 * size,
+          letterSpacing: '-0.03em',
+          lineHeight: 1,
+          color: isDark ? '#fff' : isColor ? '#fff' : '#1b1040',
+        }}>
+          free<span style={{ color: secondary }}>play</span>
+        </div>
+        <div style={{
+          fontFamily: "'DM Sans', sans-serif",
+          fontWeight: 500,
+          fontSize: 12.5 * size,
+          color: isDark ? 'rgba(255,255,255,0.55)' : isColor ? 'rgba(255,255,255,0.75)' : '#9370cc',
+          letterSpacing: '0.05em',
+          marginTop: 7 * size,
+        }}>
+          do good. play more.
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function FreeplayCard() {
+  return (
+    <div style={{
+      width: '100%', height: '100%',
+      background: '#f9f7ff',
+      display: 'flex', flexDirection: 'column',
+      alignItems: 'center', justifyContent: 'center',
+      gap: 40, padding: 40,
+      fontFamily: "'DM Sans', sans-serif",
+    }}>
+      <FreeplayLogo size={1.1} />
+      <div style={{ width: '100%', height: 1, background: '#e4dcf7' }}></div>
+      <div style={{ display: 'flex', gap: 20, width: '100%' }}>
+        {/* Dark bg */}
+        <div style={{
+          flex: 1, background: '#1b1040', borderRadius: 12,
+          padding: '20px 16px', display: 'flex', flexDirection: 'column',
+          alignItems: 'center', gap: 10,
+        }}>
+          <FreeplayLogo size={0.38} variant="dark" />
+          <div style={{ color: 'rgba(255,255,255,0.35)', fontSize: 10, fontFamily: "'DM Serif Display'", fontStyle: 'italic' }}>Dark mode</div>
+        </div>
+        {/* App icon */}
+        <div style={{
+          flex: 1, background: 'linear-gradient(135deg, #5c3bcc 0%, #8b5cf6 100%)', borderRadius: 22,
+          padding: '20px 16px', display: 'flex', flexDirection: 'column',
+          alignItems: 'center', justifyContent: 'center', gap: 6,
+        }}>
+          <svg width={52} height={52} viewBox="0 0 80 80" fill="none">
+            <rect x="14" y="37" width="52" height="36" rx="9" fill="rgba(255,255,255,0.25)"/>
+            <path d="M34 49 L34 63 L52 56 Z" fill="white"/>
+            <path d="M26 38 L26 28 Q26 14 40 14 Q54 14 54 28 L54 32" stroke="rgba(255,255,255,0.6)" strokeWidth="5.5" strokeLinecap="round" fill="none"/>
+          </svg>
+          <div style={{ color: 'rgba(255,255,255,0.6)', fontSize: 10, fontFamily: "'DM Serif Display'", fontStyle: 'italic' }}>App icon</div>
+        </div>
+        {/* Color fill */}
+        <div style={{
+          flex: 1, background: '#5c3bcc', borderRadius: 12,
+          padding: '20px 16px', display: 'flex', flexDirection: 'column',
+          alignItems: 'center', gap: 10,
+        }}>
+          <FreeplayLogo size={0.38} variant="color" />
+          <div style={{ color: 'rgba(255,255,255,0.4)', fontSize: 10, fontFamily: "'DM Serif Display'", fontStyle: 'italic' }}>Color bg</div>
+        </div>
+      </div>
+      <div style={{ background: '#f0ebff', border: '1px solid #d4c4f7', borderRadius: 10, padding: '12px 20px', width: '100%' }}>
+        <div style={{ fontSize: 11, color: '#5c3bcc', fontWeight: 600, marginBottom: 4 }}>CONCEPT NOTE</div>
+        <div style={{ fontSize: 12, color: '#2d1a6e', lineHeight: 1.5 }}>
+          An unlocked padlock with a play button inside — freedom <em>earned</em>. 
+          Kid-forward energy with a playful purple/pink palette. The slogan is punchy and child-readable.
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── LAYOUT ──────────────────────────────────────────────────────────────────
+function App() {
+  return (
+    <DesignCanvas title="Screenbalance — Brand Options">
+      <DCSection id="logos" title="Brand Directions">
+        <DCArtboard id="current" label="Current · Screen Balance" width={460} height={520}>
+          <ScreenBalanceCard />
+        </DCArtboard>
+        <DCArtboard id="timeseed" label="Option 1 · TimeSeed" width={460} height={520}>
+          <TimeSeedCard />
+        </DCArtboard>
+        <DCArtboard id="earnly" label="Option 2 · Earnly" width={460} height={520}>
+          <EarnlyCard />
+        </DCArtboard>
+        <DCArtboard id="freeplay" label="Option 3 · Freeplay" width={460} height={520}>
+          <FreeplayCard />
+        </DCArtboard>
+      </DCSection>
+      <DCSection id="compare" title="Side-by-Side Name + Slogan">
+        <DCArtboard id="names" label="Brand Name Comparison" width={1400} height={200}>
+          <div style={{
+            width: '100%', height: '100%',
+            display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr',
+            fontFamily: "'DM Sans', sans-serif",
+          }}>
+            {[
+              { name: 'Screen Balance', slogan: 'Earn minutes, not punishment', accent: '#222', bg: '#f9f9f7', tag: 'Current · Direct · Descriptive' },
+              { name: 'TimeSeed', slogan: 'Plant good habits, grow free time', accent: '#1a7a4e', bg: '#f7fdf9', tag: 'Organic · Parent-first · Calm' },
+              { name: 'Earnly', slogan: 'Screen time, well deserved', accent: '#f5a623', bg: '#fffbf2', tag: 'Modern · Confident · App-native' },
+              { name: 'Freeplay', slogan: 'Do good. Play more.', accent: '#5c3bcc', bg: '#f9f7ff', tag: 'Playful · Kid-forward · Bold' },
+            ].map((b, i) => (
+              <div key={i} style={{
+                background: b.bg,
+                borderRight: i < 3 ? '1px solid #e8e8e4' : 'none',
+                display: 'flex', flexDirection: 'column',
+                alignItems: 'center', justifyContent: 'center',
+                gap: 6, padding: '16px 24px', textAlign: 'center',
+              }}>
+                <div style={{ fontWeight: 800, fontSize: 24, color: b.accent, letterSpacing: '-0.03em' }}>{b.name}</div>
+                <div style={{ fontSize: 13, color: '#444', fontStyle: 'italic', fontFamily: "'DM Serif Display'" }}>{b.slogan}</div>
+                <div style={{
+                  marginTop: 4, background: b.accent + '18', color: b.accent,
+                  borderRadius: 20, padding: '3px 10px', fontSize: 10, fontWeight: 600, letterSpacing: '0.06em',
+                }}>{b.tag}</div>
+              </div>
+            ))}
+          </div>
+        </DCArtboard>
+      </DCSection>
+    </DesignCanvas>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+<div id="root"></div>
+</body>
+</html>
